@@ -1,0 +1,31 @@
+
+<section class="section">
+<div class="content">
+    <h1>Round {{ roundNumber }} </h1>
+    <div class="timer">
+        {{ durationText }}
+      </div>
+    
+  <ol>
+    <li>{{ participants }} - Pick your tiles</li>
+    <li>Build your words</li>
+    <li>Click <strong>Finish round</strong> button below when game is over</li>
+  </ol> 
+
+
+  <div class="columns is-vcentered">
+    <div class="column" style="text-align: center;">  
+        <app-cancel-game-button></app-cancel-game-button>
+    </div>
+    <div class="column" style="text-align: center;">
+        <button (click)="continue()"  class="button is-medium is-success">Finish Round</button>
+      </div>
+  </div>
+
+</div>
+
+</section>
+
+
+
+

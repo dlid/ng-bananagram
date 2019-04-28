@@ -1,0 +1,69 @@
+.player {
+
+    .player-header {
+        border: 1px solid #eee;
+        padding: 8px;
+        .score .calculation {
+            margin-right: 10px;
+        }
+        .score .total {
+            padding: 8px;
+            background-color: white;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #000;
+            min-width: 40px;
+            text-align: center;
+        }
+
+    }
+
+    &.expanded {
+        .player-header {
+            background-color: steelblue;
+            color: #fff;
+        }
+    }
+
+    > div {
+      button {
+          min-width: 30px;
+          text-align: center;
+      }  
+      strong {
+          min-width: 60px;
+          text-align: center;
+        display: inline-block;
+      }
+    }
+    
+    .plus {
+        strong {
+            color: green;
+        }
+    }
+    .penalties {
+        strong {
+            color: red;
+        }
+
+    }
+}
+
+.columns.score {
+    .plus-column .columns, .minus-column .columns {
+        .column {
+            text-align: center;
+            font-size: 24px;
+        }
+        .plus div {
+          background-color: #00d1b2;
+          
+          
+        }
+        .minus div {
+            background-color: hsl(48, 100%, 67%);
+        }
+    }
+}
+

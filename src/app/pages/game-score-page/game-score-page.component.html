@@ -1,0 +1,65 @@
+<section class="section">
+  <div class="content">
+    <div style="text-align: center;">
+      <button (click)="endGame()" class="button  is-danger is-outlined">
+          {{ endGameText }}
+      </button> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+    <div class="content">
+
+
+<table class="table is-bordered is-striped is-fullwidth is-narrow">
+  <thead>
+    <th>
+        <span class="is-hidden-tablet is-hidden-desktop is-hidden-widescreen is-hidden-widescreen ">#</span>
+        <span class="is-hidden-mobile">{{player}}</span>
+    </th>
+    <th class="player" *ngFor="let player of players; let ix = index" [class.in-lead]="playersInLead.indexOf(ix) !== -1">
+      <span class="is-hidden-tablet is-hidden-desktop is-hidden-widescreen is-hidden-widescreen ">{{player.substr(0,2)}}</span>
+      <span class="is-hidden-mobile">{{player}}</span>
+    </th>
+    <th>
+      <span class="is-hidden-tablet is-hidden-desktop is-hidden-widescreen is-hidden-widescreen ">Dur</span>
+      <span class="is-hidden-mobile">Duration</span>
+    </th>
+  </thead> 
+  <tr *ngFor="let round of rounds; let ix = index">
+    <th>{{ ix + 1 }}</th>
+    <td *ngFor="let score of round.scores; let six = index" [class.in-lead]="playersInLead.indexOf(six) !== -1">
+      {{ score | formatScore }}
+    </td>
+    <td>{{ round.end - round.start }}</td>
+  </tr>
+  <tfoot>
+    <th>
+        <span class="is-hidden-tablet is-hidden-desktop is-hidden-widescreen is-hidden-widescreen ">= </span>
+        <span class="is-hidden-mobile">Total</span>
+    </th>
+    <td *ngFor="let total of totals; let ix = index" class="total" [class.in-lead]="playersInLead.indexOf(ix) !== -1">
+      {{total}}
+    </td>
+    <td>?</td>
+  </tfoot>
+</table>
+
+  <div class="columns is-vcentered">
+    <div class="column" style="text-align: center;">  
+      
+      <app-cancel-game-button></app-cancel-game-button>
+      
+    </div>
+    <div class="column" style="text-align: center;">
+        <button (click)="newRound()" class="button is-success is-medium">
+            Play another round!
+       </button>
+    </div>
+  </div>
+
+</div>
+</section>
+

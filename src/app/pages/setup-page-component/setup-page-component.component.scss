@@ -1,0 +1,10 @@
+.name {
+    .delete {
+        display: none;
+    }
+    &:hover {
+        .delete {
+            display: inline-block;
+        }
+    }
+}

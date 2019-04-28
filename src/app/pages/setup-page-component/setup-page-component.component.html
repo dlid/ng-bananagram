@@ -1,0 +1,31 @@
+
+<section class="section ">
+<div class="content">
+  
+  <h1>Start a game!</h1>
+  <p>Add players and then select the ones that should be part of your game</p>
+ 
+</div>
+
+<div class="buttons">
+  <button class="button" (click)="addName()">Add a person</button> 
+  <button class="button is-outlined is-danger" (click)="removeNames()" [disabled]="selectedNames?.length === 0">Delete selected persons</button>
+</div>
+
+<div class="name" *ngFor="let name of names; let i = index;">
+
+    <label class="checkbox"> 
+      <input type="checkbox" (click)="toggleName($event, name)">
+      <span class="checkmark"></span>
+      {{ name }} 
+    </label>
+    
+    
+
+  </div>
+
+
+
+<button class="is-success button is-large" (click)="start()" [disabled]="selectedNames?.length === 0">Start!</button>
+
+</section> 

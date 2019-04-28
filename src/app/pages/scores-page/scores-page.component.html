@@ -1,0 +1,103 @@
+<div style="text-align: right; padding: 10px;">
+  <input type="search" class="input" (keydown.enter)="saol($event)" placeholder="Search SAOL">
+</div>
+
+<div class="modal" [class.is-active]="isSAOLOpen">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <iframe style="height: 700px; width: 100%;" src="about:blank" class="saol"></iframe>
+  </div>
+  <button class="modal-close is-large" (click)="this.isSAOLOpen = false" aria-label="close"></button>
+</div>
+
+<section class="section" style="padding:0.5em">
+  <div class="content">
+    <div class="player" *ngFor="let player of players; let playerIndex = index;" [class.expanded]="expandedPlayerIndex === playerIndex">
+      <div class="player-header" [routerLink]="['/scores/', playerIndex]" [class.todo]="getPlayerScore(playerIndex) === null">
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <div class="level-item">
+              {{ player }}
+            </div>  
+          </div>  
+          <div class="level-right score">
+            <div class="level-item">
+              <div class="calculation" *ngIf="getPlayerScore(playerIndex) !== null">
+                {{ scores[playerIndex]?.plus }} - {{ scores[playerIndex]?.minus }}                =
+                
+              </div>
+              <div class="total" *ngIf="getPlayerScore(playerIndex) !== null">
+                {{ getPlayerScore(playerIndex)  }}
+              </div>
+              <div *ngIf="getPlayerScore(playerIndex) === null">
+                <span class="tag is-danger">No score set</span>
+              </div>
+            </div>  
+          </div>  
+        </nav>
+      </div>
+      
+      <div *ngIf="expandedPlayerIndex == playerIndex" style="padding-top: 10px; padding-bottom: 10px">
+        
+        <div class="columns score is-mobile is-multiline ">
+          <div class="column plus-column ">
+            <p style="text-align:center; background-color: #eee">Points</p>
+          </div>
+          <div class="column minus-column">
+            <p style="text-align:center; background-color: #eee">Pentalties</p>
+          </div>
+        </div>
+        <div class="columns score is-mobile " style="padding-top: 0;">
+          
+          <div class="column plus-column ">
+            <div class="columns is-mobile is-vcentered">
+              <div class="column minus" style="padding-top: 0;">
+                <button class="button is-medium" (click)="changePlus(playerIndex,-1)">-</button>
+              </div>
+              <div class="column value" style="padding-top: 0;"><div style="font-weight: bold; color: green;">{{ scores[playerIndex]?.plus }}</div></div>
+              <div class="column plus"  style="padding-top: 0;">
+                <button class="button is-medium" (click)="changePlus(playerIndex, 1)">+</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="column minus-column is-6">
+            <div class="columns is-mobile is-vcentered">
+              <div class="column minus" style="padding-top: 0;">
+                <button class="button is-medium" (click)="changePenalty(playerIndex,-1)">-</button>
+              </div>
+              <div class="column value" style="padding-top: 0; ">
+                <div style="font-weight: bold; color: red;">
+                  {{ (scores[playerIndex]?.minus ? '-' : '') + scores[playerIndex]?.minus }}
+                </div>
+              </div>
+              <div class="column plus"  style="padding-top: 0;">
+                <button class="button is-medium" (click)="changePenalty(playerIndex, 1)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="columns is-vcentered">
+    <div class="column" style="text-align: center;">  
+      
+      <app-cancel-game-button *ngIf="!isSAOLOpen"></app-cancel-game-button>
+      
+    </div>
+    <div class="column" style="text-align: center;">
+      <button class="button is-medium is-success is-outline" (click)="continue()" [disabled]="!canContinue">
+        Complete this round
+      </button>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+</section>
